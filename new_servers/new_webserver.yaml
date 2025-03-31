@@ -1,0 +1,27 @@
+---
+#This will be an example playbook that can be used to set up a simple webserver
+- name: Webserver playbook
+  hosts: webservers
+ 
+ 
+  pre-tasks:
+    
+    - name: install httpd #installing Apache
+      package:
+        name: httpd
+        state: latest
+ 
+ 
+  tasks:
+    
+    - name: start httpd service #starting the Apache service
+      service:
+        name: httpd
+        enabled: true
+        state: started
+
+    - name: import index.html #importing already existing index.html
+      copy:
+        src: /path/to/index.html
+        dest: /var/www/html/index.html
+        mode: 0644 #Grants rw-r--r-- access to this file
