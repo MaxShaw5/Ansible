@@ -1,0 +1,51 @@
+---
+- hosts: linux
+  become: true
+  pre_tasks:
+
+
+    - name: install distro updates
+      tags: always
+      package:
+        update_only: yes
+        update_cache: yes
+      changed_when: false #this will make it to where this does not register a change when the playbook is run
+
+  tasks:
+
+
+    - name: install must-have packages
+      tags: packages
+      package:
+        name:
+        - htop
+        - tmux
+        - nano
+        - mlocate
+        - ripgrep
+        - batcat
+      state: latest
+
+
+    - name: create jarvis user
+      tags: users
+      user:
+        name: jarvis
+        groups: root
+
+    
+    - name: add ssh key for jarvis
+      tags: users
+      authorized_key:
+        user: jarvis
+        key: "key.pub"
+
+
+    - name: add sudoers file for jarvis
+      tags: users
+      copy:
+        src: ~/files/sudoer_jarvis
+        dest: /etc/sudoers.d/jarvis
+        owner: root
+        group: root
+        mode: 0440

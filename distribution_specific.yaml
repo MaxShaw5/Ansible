@@ -1,0 +1,16 @@
+---
+- name: nano?
+  hosts: linux
+  tasks:
+    - name: Ensure nano is there
+      yum:
+        name: nano
+        state: latest
+        #this play will only work when run against a host that is on the Ubuntu distribution
+      when: ansible_distribution == "Ubuntu"
+    - name: Update all packages
+      yum:
+        name: "*"
+        state: latest
+        #this play will only work when run against a host that is on the Ubuntu OR the Debian distribution
+      when: ansible_distribution in ["Ubuntu", "Debian"]

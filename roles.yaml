@@ -1,0 +1,5 @@
+---
+- hosts: linux
+  become: true
+  roles: 
+  - linux_servers #all tasks in the /etc/ansible/roles/linux_servers/tasks/main.yaml file will be executed based on assinging it this role

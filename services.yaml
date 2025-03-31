@@ -1,0 +1,11 @@
+---
+- name: start sshd
+  hosts: linux
+  tasks:
+  - name: start sshd
+    service:
+      name: sshd
+      state: started #This should start the named service
+      enabled: yes #this will enabl the service so that it starts when the server gets restarted
+    tags: services
+    when: ansible_distribution == "CentOS"

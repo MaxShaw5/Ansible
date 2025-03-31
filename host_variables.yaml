@@ -1,0 +1,11 @@
+- name: add ssh key for jarvis
+  authorized_key:
+    user: jarvis
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOKSHtEkB4Azn7GybJPpXStE7FwRul1oQ/vvSpc4/Hn ansible"
+
+- name: install nano, htop, tmux
+  package:
+    name:
+    - "{{ nano_package_name }}"
+    - "{{ htop_package_name }}"
+    - "{{ tmux_package_name }}"

@@ -1,0 +1,13 @@
+---
+- name: nano?
+  hosts: linux
+  tasks:
+    - name: Install nano, htop, and tmux
+      yum:
+        name: #Drop the names onto another line and hyphenate when doing multiple packages
+          - nano
+          - htop
+          - tmux
+          - mlocate
+        state: latest
+        update_cache: yes

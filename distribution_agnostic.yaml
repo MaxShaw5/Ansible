@@ -1,0 +1,12 @@
+---
+- name: nano? #name of play
+  hosts: linux #your host group in your "/etc/ansible/hosts" file
+  tasks:
+    - name: Install nano, htop, and tmux #name of task
+      package: #instead of a specific package manager we use "package" since it's generic and works for multiple distros
+        name: #Drop the names onto another line and hyphenate when doing multiple packages
+          - nano
+          - htop
+          - tmux
+        state: latest
+        update_cache: yes

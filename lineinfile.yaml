@@ -1,0 +1,20 @@
+#this file kind of sucks and did not work the way I thought it would.. need to look deeper into lineinfile
+
+---
+- name: Change line in file
+  hosts: linux
+  tasks:
+    - name: Change line in file
+      tags: line_change
+      lineinfile:
+        path: /home/user/test.txt
+        regexp: '^this'
+        insertafter: '^testing 1 2 3'
+        line: 'this'
+      register: test
+
+    - name: start sshd if file is changed
+      service:
+        name: sshd
+        state: started
+      when: test.changed

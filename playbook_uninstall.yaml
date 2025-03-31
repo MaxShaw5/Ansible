@@ -1,0 +1,8 @@
+---
+- name: nano?
+  hosts: linux
+  tasks:
+    - name: Ensure nano is there
+      yum:
+        name: nano
+        state: absent #set state to absent to remove packages

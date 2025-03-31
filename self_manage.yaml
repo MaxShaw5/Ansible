@@ -1,0 +1,8 @@
+---
+- name: Nano Local Install 
+  hosts: local
+  tasks:
+    - name: install nano
+      package:
+       name: nano
+       state: latest
